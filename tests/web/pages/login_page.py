@@ -15,16 +15,22 @@ class LoginPage:
 
     def __init__(self, driver):
         self.driver = driver
-        self.wait = WebDriverWait(driver, 10)
+        self.wait = WebDriverWait(driver, 20)
 
     def open(self):
         self.driver.get(self.URL)
         return self
 
     def login(self, username, password):
-        self.driver.find_element(*self.LOCATORS["username"]).send_keys(username)
-        self.driver.find_element(*self.LOCATORS["password"]).send_keys(password)
-        self.driver.find_element(*self.LOCATORS["login_btn"]).click()
+        self.wait.until(
+            EC.element_to_be_clickable(self.LOCATORS["username"])
+        ).send_keys(username)
+        self.wait.until(
+            EC.element_to_be_clickable(self.LOCATORS["password"])
+        ).send_keys(password)
+        self.wait.until(
+            EC.element_to_be_clickable(self.LOCATORS["login_btn"])
+        ).click()
 
     def get_error_message(self):
         return self.wait.until(
