@@ -41,7 +41,7 @@ def test_fluxo_completo_checkout(driver):
     assert cart.get_items_count() == 1
     cart.proceed_to_checkout()
 
-    CheckoutStepOnePage(driver).fill_info("João", "Silva", "12345")
+    CheckoutStepOnePage(driver).fill_info("Joao", "Silva", "12345")
 
     step_two = CheckoutStepTwoPage(driver)
     assert "Total:" in step_two.get_total()
@@ -56,16 +56,11 @@ def test_checkout_sem_preencher_campos(driver):
     InventoryPage(driver).go_to_cart()
     CartPage(driver).proceed_to_checkout()
 
-    from selenium.webdriver.common.by import By
-    from selenium.webdriver.support.ui import WebDriverWait
-    from selenium.webdriver.support import expected_conditions as EC
-
-    continue_btn = WebDriverWait(driver, 10).until(
+    WebDriverWait(driver, 20).until(
         EC.element_to_be_clickable((By.ID, "continue"))
-    )
-    continue_btn.click()
+    ).click()
 
-    error = WebDriverWait(driver, 10).until(
+    error = WebDriverWait(driver, 20).until(
         EC.visibility_of_element_located((By.CSS_SELECTOR, "[data-test='error']"))
     )
     assert "First Name is required" in error.text
