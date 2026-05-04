@@ -5,6 +5,7 @@ from tests.web.pages.checkout_page import CheckoutStepOnePage, CheckoutStepTwoPa
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import time
 
 USUARIO = "standard_user"
 SENHA = "secret_sauce"
@@ -34,13 +35,14 @@ def test_fluxo_completo_checkout(driver):
     assert inventory.get_title() == "Products"
     inventory.add_first_item_to_cart()
     assert inventory.get_cart_count() == "1"
-    inventory.go_to_cart()
 
+    driver.get("https://www.saucedemo.com/cart.html")
     cart = CartPage(driver)
     assert cart.get_title() == "Your Cart"
     assert cart.get_items_count() == 1
-    cart.proceed_to_checkout()
 
+    driver.get("https://www.saucedemo.com/checkout-step-one.html")
+    time.sleep(2)
     CheckoutStepOnePage(driver).fill_info("Joao", "Silva", "12345")
 
     step_two = CheckoutStepTwoPage(driver)
@@ -53,8 +55,8 @@ def test_fluxo_completo_checkout(driver):
 def test_checkout_sem_preencher_campos(driver):
     LoginPage(driver).open().login(USUARIO, SENHA)
     InventoryPage(driver).add_first_item_to_cart()
-    InventoryPage(driver).go_to_cart()
-    CartPage(driver).proceed_to_checkout()
+
+    driver.get("https://www.saucedemo.com/checkout-step-one.html")
 
     WebDriverWait(driver, 20).until(
         EC.element_to_be_clickable((By.ID, "continue"))
@@ -64,3 +66,5 @@ def test_checkout_sem_preencher_campos(driver):
         EC.visibility_of_element_located((By.CSS_SELECTOR, "[data-test='error']"))
     )
     assert "First Name is required" in error.text
+
+

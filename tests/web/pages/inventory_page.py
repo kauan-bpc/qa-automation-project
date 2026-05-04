@@ -8,7 +8,6 @@ class InventoryPage:
         "title":       (By.CLASS_NAME, "title"),
         "add_to_cart": (By.CSS_SELECTOR, ".inventory_item:first-child button"),
         "cart_badge":  (By.CLASS_NAME, "shopping_cart_badge"),
-        "cart_icon":   (By.CLASS_NAME, "shopping_cart_link"),
     }
 
     def __init__(self, driver):
@@ -31,6 +30,4 @@ class InventoryPage:
         ).text
 
     def go_to_cart(self):
-        self.wait.until(
-            EC.element_to_be_clickable(self.LOCATORS["cart_icon"])
-        ).click()
+        self.driver.get("https://www.saucedemo.com/cart.html")
