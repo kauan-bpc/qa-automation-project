@@ -13,7 +13,7 @@ class InventoryPage:
 
     def __init__(self, driver):
         self.driver = driver
-        self.wait = WebDriverWait(driver, 10)
+        self.wait = WebDriverWait(driver, 20)
 
     def get_title(self):
         return self.wait.until(
@@ -21,10 +21,16 @@ class InventoryPage:
         ).text
 
     def add_first_item_to_cart(self):
-        self.driver.find_element(*self.LOCATORS["add_to_cart"]).click()
+        self.wait.until(
+            EC.element_to_be_clickable(self.LOCATORS["add_to_cart"])
+        ).click()
 
     def get_cart_count(self):
-        return self.driver.find_element(*self.LOCATORS["cart_badge"]).text
+        return self.wait.until(
+            EC.visibility_of_element_located(self.LOCATORS["cart_badge"])
+        ).text
 
     def go_to_cart(self):
-        self.driver.find_element(*self.LOCATORS["cart_icon"]).click()
+        self.wait.until(
+            EC.element_to_be_clickable(self.LOCATORS["cart_icon"])
+        ).click()
