@@ -13,7 +13,7 @@ Projeto de automação de testes com cobertura completa de API REST e testes Web
 - GitHub Actions
 
 ## Estrutura do Projeto
-
+```bash
 qa-automation-project/
 ├── .github/workflows/qa-pipeline.yml
 ├── tests/
@@ -31,7 +31,48 @@ qa-automation-project/
 │           └── test_checkout_flow.py
 ├── conftest.py
 └── requirements.txt
+```
 
+```bash
+## EndPoints Cobertos
+API — Swagger Petstore (19 endpoints)
+Pet (7):
+
+POST /pet — Criar pet
+GET /pet/{petId} — Buscar pet por ID
+PUT /pet — Atualizar pet
+POST /pet/{petId} — Atualizar pet com form data
+DELETE /pet/{petId} — Deletar pet
+GET /pet/findByStatus — Buscar pets por status
+POST /pet/{petId}/uploadImage — Upload de imagem
+
+Store (4):
+
+POST /store/order — Criar pedido
+GET /store/order/{orderId} — Buscar pedido por ID
+DELETE /store/order/{orderId} — Deletar pedido
+GET /store/inventory — Consultar inventário
+
+User (8):
+
+POST /user — Criar usuário
+GET /user/{username} — Buscar usuário
+PUT /user/{username} — Atualizar usuário
+DELETE /user/{username} — Deletar usuário
+GET /user/login — Login
+GET /user/logout — Logout
+POST /user/createWithArray — Criar usuários em array
+POST /user/createWithList — Criar usuários em lista
+```
+
+```bash
+## Cenarios WEB cobertos
+Login com credenciais válidas
+Login com credenciais inválidas
+Login com usuário bloqueado
+Fluxo completo E2E: login → adicionar ao carrinho → checkout → confirmação
+Checkout sem preencher campos obrigatórios
+```
 ## Como Instalar
 
 ```bash
