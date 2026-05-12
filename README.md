@@ -32,9 +32,8 @@ qa-automation-project/
 ├── conftest.py
 └── requirements.txt
 ```
-
-```bash
 ## EndPoints Cobertos
+```bash
 API — Swagger Petstore (19 endpoints)
 Pet (7):
 
@@ -64,9 +63,9 @@ GET /user/logout — Logout
 POST /user/createWithArray — Criar usuários em array
 POST /user/createWithList — Criar usuários em lista
 ```
-
-```bash
 ## Cenarios WEB cobertos
+```bash
+
 Login com credenciais válidas
 Login com credenciais inválidas
 Login com usuário bloqueado
