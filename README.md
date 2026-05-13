@@ -1,6 +1,6 @@
 # QA Automation — Petstore API & SauceDemo Web
 
-Projeto de automação de testes com cobertura completa de API REST e testes Web E2E, integrado com pipeline CI/CD via GitHub Actions.
+Projeto de automação de testes com cobertura completa de API REST e testes Web E2E, integrado com pipeline CI/CD via GitHub Actions..
 
 ## Tecnologias
 
